@@ -1,0 +1,24 @@
+<%- include('partials/header'); %>
+
+<div class="container">
+<form METHOD ="POST" action="/sendevent">
+	<h1><%-event['summary']%></h1>
+	 <div class="form-group">
+	    <label for="email">Email address:</label>
+	    <textarea type="email" class="form-control" name="event[email]" id="email" required></textarea>
+	    <small id="emailHelp" class="form-text text-muted">Seprate Email Id by commas(,) </small>
+  	</div>
+  	 <div class="form-group">
+ 		<label for="title">Meeting Title:</label>
+	    <input type="text" class="form-control" name="event[title]" id="title"  value='<%-event['summary']%>' readonly>
+  	</div>
+  	<div class="form-group">
+ 		<label for="body">Meeting Body:</label>
+	    <textarea type="text" class="form-control" name="event[body]" id="body" readonly><%-event['description']%></textarea>
+  	</div>
+  		<input type="hidden" name="event[id]" value="<%-event['id']%>">
+  	<button type="submit" class="btn btn-primary">Send Mail	</button>
+</div>
+</form>
+
+<%- include('partials/footer'); %>
