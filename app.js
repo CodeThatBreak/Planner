@@ -21,7 +21,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 	"668708568014-dkfj7i8vreg57ahtk9d3hf7u3vdbvsnv.apps.googleusercontent.com",
 	"NiXggkHTfV5wt1-2VgY616Bm",
-	"https://plannerc.herokuapp.com/google/authenticated//"
+	"https://plannerc.herokuapp.com/google/authenticated/"
 )
 
 const scopes = [
@@ -237,6 +237,6 @@ async function sendInvite(auth ,newEmail,id) {
 
 
 
-app.listen(process.env.IP,"3000",function(){
+app.listen(process.env.IP||3000,function(){
 	console.log("Server Started");
 })

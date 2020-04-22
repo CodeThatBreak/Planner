@@ -1,13 +1,21 @@
 {
   "name": "googlecleander",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application to manage your google calendar.It uses Google OAuth2 for authenticating user and Google APIs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aakash651/Planner.git"
+  },
+  "author": "Aakash",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aakash651/Planner/issues"
+  },
+  "homepage": "https://github.com/aakash651/Planner#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.0.2",
