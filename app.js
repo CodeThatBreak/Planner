@@ -21,7 +21,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 	"668708568014-dkfj7i8vreg57ahtk9d3hf7u3vdbvsnv.apps.googleusercontent.com",
 	"NiXggkHTfV5wt1-2VgY616Bm",
-	"http://localhost:3000/google/authenticated/"
+	"https://plannerc.herokuapp.com/google/authenticated//"
 )
 
 const scopes = [
@@ -38,11 +38,18 @@ const url = oauth2Client.generateAuthUrl({
 
 
 
+
+
+
 var events_global ;
+var name ;
+var picture_url ;
 
-
-app.get("/",function(req,res){
+app.get("/",async function(req,res){
 	res.render("login",{url:url});
+
+  
+
 })
 
 
@@ -51,11 +58,30 @@ app.get("/google/authenticated",function(req,res){
 
 	var code = req.query.code;
 	console.log(code);
-	oauth2Client.getToken(code, function (err, tokens) {
+	oauth2Client.getToken(code, async function (err, tokens) {
  	
   	if (!err) {
     oauth2Client.setCredentials(tokens);
-				res.redirect("/profile");
+        var oauth2 = google.oauth2({
+  auth: oauth2Client,
+  version: 'v2'
+  });
+				 await oauth2.userinfo.get(
+      function(err, res) {
+    if (err) {
+       console.log(err);
+    } else {
+       var user  =res.data;
+       name =user['name'];
+       console.log(name);
+       picture_url = user['picture']
+    }
+  });
+
+
+
+
+        res.redirect("/profile");
   			}
 	});
 })
@@ -65,8 +91,13 @@ app.get("/google/authenticated",function(req,res){
 app.get("/profile",async function(req,res){
 
   var events = await listEvents(oauth2Client);
-	res.render("profile",{events:events});
+	res.render("profile",{events:events,name:name,picture_url:picture_url});
   events_global = events;
+  
+  
+
+
+
   
 })
 
@@ -74,7 +105,7 @@ app.get("/profile",async function(req,res){
 app.get('/sendevent',async function(req,res){
 
   var index  = parseInt(req.query['id']);
-  res.render('sendevent',{event:events_global[index]});
+  res.render('sendevent',{event:events_global[index],name:name,picture_url:picture_url});
 
 })
 
@@ -98,11 +129,11 @@ app.get('/eventsjson',  async function(req,res){
 
 app.get('/addevents',function(req,res){
 
-		res.render("addEvents");
+		res.render("addEvents",{name:name,picture_url:picture_url});
 })
 app.post('/addevents',function(req,res){
 
-  res.render('addEvents');
+  res.render('addEvents',{name:name,picture_url:picture_url});
   var eventDetails = req.body.event;
   var attendeDetails = req.body.event['email'].split(',');
   
@@ -124,7 +155,7 @@ app.post('/addevents',function(req,res){
       'dateTime' :eventDetails['start']+"T00:00:00+05:30"
     },
     'end':{
-      'dateTime':eventDetails['end']+"T23:59:59+05:30"
+      'dateTime':eventDetails['end']+"T24:00:00+05:30"
     }
 	}
 
@@ -206,6 +237,6 @@ async function sendInvite(auth ,newEmail,id) {
 
 
 
-app.listen("3000",function(){
+app.listen(process.env.IP,"3000",function(){
 	console.log("Server Started");
 })
