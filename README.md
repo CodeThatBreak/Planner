@@ -1,6 +1,6 @@
 # Planner
 
-A web application to manage your google calendar.It uses Google OAuth2 for authenticating user and Google APIs
+A web application to manage your google calendar.It uses Google OAuth2 for authenticating user and Google APIs.You can access the web app  <a  href="https://plannerc.herokuapp.com/" target ="_blank">here</a>
 
 ## Getting Started
 ```
