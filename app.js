@@ -18,13 +18,13 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(session({
-    secret: "bokunoheroacademia_onepiece_naruto",
+    secret: process.env.SECRET,
     name: "sid",
     resave: false,
     saveUninitialized: true,
     cookie: { 
         secure: false,
-        maxAge: 6000000
+        maxAge: 24*60*60*1000
     }
 }));
 
@@ -56,9 +56,9 @@ const redirectHome = (req, res, next) => {
 function getOAuthClient(){
     return new google.auth.OAuth2(
 
-    "668708568014-dkfj7i8vreg57ahtk9d3hf7u3vdbvsnv.apps.googleusercontent.com",
-    "NiXggkHTfV5wt1-2VgY616Bm",
-    "http://localhost:3000/google/authenticated/"
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    process.env.REDIRECT_URI
 )}
 
 function getUrl(){
@@ -216,6 +216,7 @@ app.post('/addevents', function(req, res) {
         }
     }
     addEvents(oauth2Client, event);
+    res.redirect('/profile');
 
 })
 
