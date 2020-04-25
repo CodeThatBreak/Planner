@@ -1,42 +1,30 @@
 <%- include('partials/header'); %>
-
-
-
-
 <div class="container">
-
-	<h1>Upcoming Events</h1>
-	<form method ="GET" action="/sendevent/">
-	<div class="table-responsive">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Event Title</th>
-					<th>Event Body</th>
-					<th>Send Invite</th>
-
-				</tr>
-
-			</thead>
-
-			<tbody>
-
-				<% for(var i=0;i<events.length;i++){ %>
-						<tr>
-							<th scope="row"><%-i+1%></th>
-							<td><%-events[i]['summary']%></td>
-							<td><%-events[i]['description']%></td>
-							<td ><button class="btn btn-primary" name="id" value=<%-i%>>Send Invite</button>
-							</td>
-								
-						</tr>
-				<% };%>
-			</tbody>
-		</table>
-	</div>
-</form>
+   <h1>Upcoming Events</h1>
+   <form method ="GET" action="/sendevent/">
+      <div class="table-responsive">
+         <table class="table table-bordered">
+            <thead>
+               <tr>
+                  <th>#</th>
+                  <th>Event Title</th>
+                  <th>Event Body</th>
+                  <th>Send Invite</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% for(var i=0;i<events.length;i++){ %>
+               <tr>
+                  <th scope="row"><%-i+1%></th>
+                  <td><%-events[i]['summary']%></td>
+                  <td><%-events[i]['description']%></td>
+                  <td ><button class="btn btn-primary" name="id" value=<%-i%>>Send Invite</button>
+                  </td>
+               </tr>
+               <% };%>
+            </tbody>
+         </table>
+      </div>
+   </form>
 </div>
-
-
 <%- include('partials/footer'); %>
