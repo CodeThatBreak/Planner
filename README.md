@@ -4,9 +4,11 @@ A web application to manage your google calendar.It uses Google OAuth2 for authe
 
 ## Getting Started
 ```
+
 git clone https://github.com/aakash651/Planner.git
 cd Planner
-npm install 
+npm install -d
+node app.js
 
 ```
 
@@ -32,5 +34,26 @@ npm install
 
 ## Usage
 
+
+### View your Upcoming Events
+
+<img src="https://i.imgur.com/GuQsyUv.png">
+
+---
+
+### Add Attendes To an Event
+
+<img src="https://i.imgur.com/ZmOR1RH.png">
+
+---
+
+### Get Events as JSON
+
+<img src="https://i.imgur.com/YBfViyq.png">
+
+---
+### Add an Event
+
+<img src="https://i.imgur.com/XkBm0a6.png" >
 
 
