@@ -188,10 +188,6 @@ app.post('/addevents', function(req, res) {
 
     var oauth2Client = getOAuthClient();
     oauth2Client.setCredentials(req.session["tokens"]);
-    res.render('addEvents', {
-        name: req.session.name,
-        picture_url: req.session.picture_url
-    });
     var eventDetails = req.body.event;
     var attendeDetails = req.body.event['email'].split(',');
 
