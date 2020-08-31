@@ -235,7 +235,7 @@ function addEvents(auth, event) {
 
     calendar.events.insert({
         auth: auth,
-        calendarId: 'primary',
+        calendarId: ['primary','Classes'],
         resource: event,
         sendNotifications: true
     }, function(err, event) {
