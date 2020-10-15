@@ -254,7 +254,7 @@ async function listEvents(auth) {
         auth
     });
     const res = await calendar.events.list({
-        calendarId: 'primary',
+        calendarId: 'ndvrron9am2m24hc2vnb8vkia0@group.calendar.google.com',
         timeMin: (new Date()).toISOString(),
         maxResults: 20,
         singleEvents: true,
